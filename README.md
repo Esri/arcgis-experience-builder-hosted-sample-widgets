@@ -1,25 +1,25 @@
 # Overview
 
-This repository provides hosted samples for widgets and themes built with ArcGIS Experience Builder. Learn more about [ArcGIS Experience Builder SDK](https://developers.arcgis.com/experience-builder/guide/core-concepts/).
-
-## Features
-- [Theme samples](themes)
-- [Widget samples](widgets)
+This repository provides hosted sample widgets built with ArcGIS Experience Builder. Learn more about [ArcGIS Experience Builder SDK](https://developers.arcgis.com/experience-builder/guide/core-concepts/).
 
 ## Instructions
 
-
+1. The sample widgets here are hosted on web server and can be used directly in ArcGIS Enterprise.
+2. Use the widget manifest path as below format 
+https://arcgis-experience-builder-hosted-sample-widgets.github.io/www-host//[widget manifest path]
+3. Follow the instructions below to register sample widgets in your ArcGIS Enterprise 
+https://doc.arcgis.com/en/experience-builder/11.3/configure-widgets/add-custom-widgets.htm#ESRI_SECTION1_BA69C74DE41F43639472EB3F0A8F99F6
 
 ## Requirements
 
 ## Resources
 * [ArcGIS Experience Builder Developer Guide](https://developers.arcgis.com/experience-builder/)
+* [Add custom widgets](https://doc.arcgis.com/en/experience-builder/11.3/configure-widgets/add-custom-widgets.htm)
 * [Widget Development](https://developers.arcgis.com/experience-builder/guide/getting-started-widget/)
 * [Theme Development](https://developers.arcgis.com/experience-builder/guide/theme-development/)
 
 ## Issues
 Find a bug or want to request a new feature? Please let us know by submitting an issue.
-
 
 ## Licensing
 Copyright 2024 Esri
