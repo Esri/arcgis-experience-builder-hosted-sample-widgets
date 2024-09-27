@@ -6,7 +6,7 @@ This repository provides hosted sample widgets built with ArcGIS Experience Buil
 
 1. The sample widgets here are hosted on web server and can be used directly in ArcGIS Enterprise.
 2. Use the widget manifest path as this format:
-   https://esri.github.io/arcgis-experience-builder-hosted-sample-widgets/[widget manifest path]
+   https://esri.github.io/arcgis-experience-builder-hosted-sample-widgets/[widget manifest path]()
 3. Follow the [instructions](https://doc.arcgis.com/en/experience-builder/11.3/configure-widgets/add-custom-widgets.htm#ESRI_SECTION1_BA69C74DE41F43639472EB3F0A8F99F6) to register sample widgets in your ArcGIS Enterprise
 
 
