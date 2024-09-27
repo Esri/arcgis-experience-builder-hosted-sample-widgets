@@ -10,8 +10,6 @@ https://esri.github.io/arcgis-experience-builder-hosted-sample-widgets/[widget m
 3. Follow the instructions below to register sample widgets in your ArcGIS Enterprise 
 https://doc.arcgis.com/en/experience-builder/11.3/configure-widgets/add-custom-widgets.htm#ESRI_SECTION1_BA69C74DE41F43639472EB3F0A8F99F6
 
-## Requirements
-
 ## Resources
 * [ArcGIS Experience Builder Developer Guide](https://developers.arcgis.com/experience-builder/)
 * [Add custom widgets](https://doc.arcgis.com/en/experience-builder/11.3/configure-widgets/add-custom-widgets.htm)
