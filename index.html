@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My GitHub Repo Browser</title>
+    <style>
+        .folder, .file {
+            cursor: pointer;
+        }
+        .folder::before {
+            content: "📁 ";
+        }
+        .file::before {
+            content: "📄 ";
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Repo Browser</h1>
+    <div id="breadcrumb"></div>
+    <ul id="file-list"></ul>
+
+    <script>
+        // GitHub username and repo name
+        const username = 'ArcGIS';
+        const repo = 'arcgis-experience-builder-hosted-sample-widgets';
+
+        // Function to fetch contents of a directory
+        async function fetchContents(path = '') {
+            const url = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
+            const response = await fetch(url);
+            const data = await response.json();
+            return data;
+        }
+
+        // Function to render files and folders
+        function renderContents(contents, path = '') {
+            const fileList = document.getElementById('file-list');
+            fileList.innerHTML = ''; // Clear previous contents
+
+            contents.forEach(item => {
+                const listItem = document.createElement('li');
+                if (item.type === 'dir') {
+                    listItem.className = 'folder';
+                    listItem.textContent = item.name;
+                    listItem.addEventListener('click', () => {
+                        updateBreadcrumb(path, item.name);
+                        loadDirectory(item.path);
+                        updateURL(item.path);
+                    });
+                } else if (item.type === 'file') {
+                    listItem.className = 'file';
+                    const link = document.createElement('a');
+                    link.href = `/${repo}/${item.path}`; // GitHub Pages URL
+                    link.textContent = item.name;
+                    listItem.appendChild(link);
+                }
+                fileList.appendChild(listItem);
+            });
+        }
+
+        // Function to load a directory
+        async function loadDirectory(path = '') {
+            const contents = await fetchContents(path);
+            renderContents(contents, path);
+        }
+
+        // Function to update breadcrumb
+        function updateBreadcrumb(basePath, folderName) {
+            const breadcrumb = document.getElementById('breadcrumb');
+            const pathSegments = basePath ? basePath.split('/') : [];
+            if (folderName) pathSegments.push(folderName);
+            breadcrumb.textContent = '📁 ' + pathSegments.join(' / ');
+        }
+
+        // Function to update URL
+        function updateURL(path) {
+            const newURL = `${window.location.origin}/${repo}/${path}`;
+            history.pushState({ path }, '', newURL);
+        }
+
+        // Function to handle initial load and URL changes
+        function handleRoute() {
+            const currentPath = window.location.pathname.replace(`/${repo}/`, ''); // Extract path from URL
+            if (currentPath && currentPath !== '/') {
+                loadDirectory(currentPath);
+                updateBreadcrumb('', currentPath);
+            } else {
+                loadDirectory();
+                updateBreadcrumb();
+            }
+        }
+
+        // Initialize by handling the current route
+        handleRoute();
+
+        // Listen for URL changes (back/forward navigation)
+        window.onpopstate = () => {
+            handleRoute();
+        };
+    </script>
+</body>
+</html>
