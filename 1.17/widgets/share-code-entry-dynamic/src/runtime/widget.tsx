@@ -13,21 +13,23 @@
  * limitations under the License.
  */
 
-/** @jsx jsx */
-import { React, type AllWidgetProps, jsx } from 'jimu-core'
+import { React, type AllWidgetProps, moduleLoader } from 'jimu-core'
 
-export default function Widget (props: AllWidgetProps<unknown>) {
-  const [ma, setMa] = React.useState(null)
-  const [err, setErr] = React.useState(null)
+const Widget = (props: AllWidgetProps<object>) => {
+  const [module, setModule] = React.useState(null)
 
   React.useEffect(() => {
-    import('./module-a').then(m => { setMa(m) }).catch(e => { setErr(e) })
+    moduleLoader.loadModule('widgets/shared-code/entry1', props.context.folderUrl).then((module) => {
+      console.log('Module loaded:', module)
+      setModule(module)
+    })
   }, [])
-
   return (
     <div className="widget-demo jimu-widget m-2">
-      {ma && <div>Module loaded, {ma.f1()}</div>}
-      {err && <div>Load dynamic module error. {err.message}</div>}
+      <p>A widget loading a shared entry dynamically</p>
+      <p>The shared code: { module?.sampleFunction1() }</p>
     </div>
   )
 }
+
+export default Widget
